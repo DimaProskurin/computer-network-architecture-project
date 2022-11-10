@@ -28,7 +28,7 @@
   * POST HTTP
   * параметры пользователя должны быть указаны в теле запроса в формате JSON
 ```shell
-curl --request POST 'http://localhost:8000/api/create/user' \
+curl --request POST 'http://51.250.5.79:8000/api/create/user' \
 --data-raw '{
     "first_name": "John",
     "last_name": "Doe",
@@ -43,7 +43,7 @@ curl --request POST 'http://localhost:8000/api/create/user' \
   * POST HTTP
   * логи и пароль пользователя должны быть указаны в теле запроса в формате JSON
 ```shell
-curl --request POST 'http://localhost:8000/accounts/login' \
+curl --request POST 'http://51.250.5.79:8000/accounts/login' \
 --data-raw '{
     "username": "johndoe",
     "password": "mysecretpassword"
@@ -54,7 +54,7 @@ curl --request POST 'http://localhost:8000/accounts/login' \
   * endpoint: `/accounts/logout`
   * GET HTTP
 ```shell
-curl --request GET 'http://localhost:8000/accounts/logout'
+curl --request GET 'http://51.250.5.79:8000/accounts/logout'
 ```
 
 ### Создание события
@@ -62,7 +62,7 @@ curl --request GET 'http://localhost:8000/accounts/logout'
   * POST HTTP
   * параметры события должны быть указаны в теле запроса в формате JSON
 ```shell
-curl --request POST 'localhost:8000/api/create/event' \
+curl --request POST '51.250.5.79:8000/api/create/event' \
 --data-raw '{
     "title": "Пример события",
     "description": "Это поле является опциональным",
@@ -78,7 +78,7 @@ curl --request POST 'localhost:8000/api/create/event' \
   * endpoint `api/info/user/<int:user_id>`
   * GET HTTP
 ```shell
-curl --request GET 'localhost:8000/api/info/user/1'
+curl --request GET '51.250.5.79:8000/api/info/user/1'
 ```
 
 ### Показать детальную информацию о событии
@@ -86,7 +86,7 @@ curl --request GET 'localhost:8000/api/info/user/1'
   * GET HTTP
   * Если событие частное для данного пользователя, то будет показана только частичная информация о событии
 ```shell
-curl --request GET 'localhost:8000/api/info/event/2'
+curl --request GET '51.250.5.79:8000/api/info/event/2'
 ```
 
 ### Принять или отклонить приглашение на событие
@@ -94,7 +94,7 @@ curl --request GET 'localhost:8000/api/info/event/2'
   * PUT HTTP
   * Новый статус для приглашения (ACCEPTED / REJECTED) нужно указать в качестве параметра `status` в запросе
 ```shell
-curl --request PUT 'localhost:8000/api/update/invite/2?status=REJECTED'
+curl --request PUT '51.250.5.79:8000/api/update/invite/2?status=REJECTED'
 ```
 
 ### Посмотреть список приглашений
@@ -102,8 +102,8 @@ curl --request PUT 'localhost:8000/api/update/invite/2?status=REJECTED'
   * GET HTTP
   * Фильтр-параметр `status` определяет тип приглашений, которые необходимо показать. По умолчанию возвращаются все приглашения
 ```shell
-curl --request GET 'localhost:8000/api/info/invites'
-curl --request GET 'localhost:8000/api/info/invites?status=PENDING'
+curl --request GET '51.250.5.79:8000/api/info/invites'
+curl --request GET '51.250.5.79:8000/api/info/invites?status=PENDING'
 ```
 
 ### Показать все события (по типу расписания) пользователя для указанного промежутка времени
@@ -111,7 +111,7 @@ curl --request GET 'localhost:8000/api/info/invites?status=PENDING'
   * GET HTTP
   * Параметры `from` и `till` должны быть указаны
 ```shell
-curl --request GET 'localhost:8000/api/info/user/1/events?from=2022-11-09T00:00:00&till=2022-11-13T00:00:00'
+curl --request GET '51.250.5.79:8000/api/info/user/1/events?from=2022-11-09T00:00:00&till=2022-11-13T00:00:00'
 ```
 
 ### Найти первый свободный временной промежуток для группы людей для создания события
@@ -119,5 +119,5 @@ curl --request GET 'localhost:8000/api/info/user/1/events?from=2022-11-09T00:00:
   * GET HTTP
   * Параметры `user_ids` и `duration` должны быть указаны 
 ```shell
-curl --request GET 'localhost:8000/api/timetable/free_time_slot?user_ids=1,2,3&duration=1:00:00'
+curl --request GET '51.250.5.79:8000/api/timetable/free_time_slot?user_ids=1,2,3&duration=1:00:00'
 ```
